@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: KeyboardBar
+  m_Shader: {fileID: 4800000, guid: 72d7e23620c0f4ea4acf717c4a942cd5, type: 3}
+  m_ShaderKeywords: []
+  m_CustomRenderQueue: -1
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs: {}
+    m_Floats:
+      data:
+        first:
+          name: _Alpha
+        second: 0
+    m_Colors:
+      data:
+        first:
+          name: _Color
+        second: {r: 0, g: 0, b: 0, a: .0060397014}
+      data:
+        first:
+          name: _Color1
+        second: {r: .390955657, g: .447761178, b: .412009448, a: .368627459}
+      data:
+        first:
+          name: _Color2
+        second: {r: .271775454, g: .298507452, b: .277121842, a: .266666681}
