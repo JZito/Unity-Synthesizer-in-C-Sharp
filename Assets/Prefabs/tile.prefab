@@ -52,6 +52,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ac51849b6b4f40f68c9b8f2f8d6aa1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  originalColor: {r: .258823544, g: .843137264, b: .717647076, a: .278431386}
+  touchColor: {r: 1, g: 0, b: 0, a: .376470596}
+  touchTrue: 0
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -73,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9bdf7ec73a9ef4c87956ee0763ec057d, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: .258823544, g: .843137264, b: .717647076, a: .278431386}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -18,10 +18,10 @@ using System.Collections;
 				
 				countUpObject++;
 				string countUpObjectString = countUpObject.ToString();
-				Debug.Log(countUpObject);
+				//Debug.Log(countUpObject);
 				//this line below is offending line?
 				GameObject g = Instantiate(tile,new Vector3(x,y,0),Quaternion.identity)as GameObject;
-				g.GetComponent<SpriteRenderer>().color = new Color(0,1 - (countUpObject / 100),countUpObject / 100,0.25f);
+				//g.GetComponent<SpriteRenderer>().color = new Color(0,1 - (countUpObject / 100),countUpObject / 100,0.25f);
 				g.transform.parent = gameObject.transform;
 				g.name = countUpObjectString;
 				/*
