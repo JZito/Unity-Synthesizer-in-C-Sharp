@@ -7,7 +7,7 @@ using System.Collections;
      public GameObject tile;
      public int GridWidth;
 	 public int GridHeight;
-	 public float CountUpObject;
+	 public float countUpObject;
 
      void Start() {
 
@@ -16,11 +16,14 @@ using System.Collections;
 			for(int x=0;x<GridWidth;x++)
 			{
 				
-				CountUpObject++;
-				Debug.Log(CountUpObject);
+				countUpObject++;
+				string countUpObjectString = countUpObject.ToString();
+				Debug.Log(countUpObject);
 				//this line below is offending line?
 				GameObject g = Instantiate(tile,new Vector3(x,y,0),Quaternion.identity)as GameObject;
-				g.GetComponent<SpriteRenderer>().color = new Color(0,1 - (CountUpObject / 100),CountUpObject / 100,1);
+				g.GetComponent<SpriteRenderer>().color = new Color(0,1 - (countUpObject / 100),countUpObject / 100,0.25f);
+				g.transform.parent = gameObject.transform;
+				g.name = countUpObjectString;
 				/*
 				OnCube newCube = g.GetComponent<OnCube>();
 				DisplayASequence displayASequence = g.GetComponent<DisplayASequence>();

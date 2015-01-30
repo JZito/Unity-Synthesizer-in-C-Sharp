@@ -15,5 +15,7 @@ public class TileDetails : MonoBehaviour {
 	
 	}
 
+
+
 	
 }
