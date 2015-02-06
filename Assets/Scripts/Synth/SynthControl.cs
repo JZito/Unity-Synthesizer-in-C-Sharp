@@ -6,14 +6,13 @@ using System.Collections;
 public class SynthControl : MonoBehaviour {
 
 
-//	  [System.Serializable]
 
 public SynthModule synthMod0;
 public SynthModule synthMod1;
 public SynthConfigure synthConfig;
 public Lope modEnv;
-
 public GameObject synthMod;
+
 [Range(0.0f, 1.0f)] public float volume = 0.5f;
 [Range(-1.0f, 1.0f)] public float stereo = 0.5f;
 [Range(1, 24f)] public float fm_mul = 8f;
@@ -27,12 +26,10 @@ private int switcher = 0;
 
 void Awake()
 {
-    modules[0] = synthMod;
-    modules[1] = synthMod;
-
-		Debug.Log ("MODULES 0 " + modules [0].GetComponent<SynthModule> ());
-		synthMod0 = modules[0].GetComponent<SynthModule>();
-		synthMod1 = modules[1].GetComponent<SynthModule>();
+	modules[0] = synthMod;
+	modules[1] = synthMod;
+	synthMod0 = modules[0].GetComponent<SynthModule>();
+	synthMod1 = modules[1].GetComponent<SynthModule>();
 }
 
 void Start() {
@@ -47,13 +44,13 @@ void Update() {
 }
 
 public Lope KeyOn(int note, Lope env) {
-
-    switcher = (switcher + 1) & 1;
+	switcher = (switcher + 1) & 1;
     var module = modules[switcher];
     var    synthModule = module.GetComponent<SynthModule>();
     synthModule.osc.SetNote(note);
     synthModule.env.KeyOn();
    	modEnv = synthModule.env;
+	Debug.Log ("switcher" + switcher);
     return modEnv;
 }
 

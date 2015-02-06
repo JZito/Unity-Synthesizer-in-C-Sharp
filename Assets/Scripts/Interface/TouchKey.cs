@@ -15,19 +15,16 @@ private GameObject[] touchesOld;
 private int lastNoteDegree = -1;
 private List<GameObject> touchList = new List<GameObject>();
 private Lope envelope;
-private MusicScale scale;
 private RaycastHit hit;
 private string lastNoteDegreeString;
 private SynthControl synth;
 
 public void Start() {
     synth = GetComponent<SynthControl>();
-    scale = GetComponent<MusicScale>();
     envelope = GetComponent<Lope>();
-    scale.MusicalScale(0);
 //    noise = FindObjectOfType(NoiseController);
 //    seq = GetComponent.<AutoSequencer>();
-
+		//  SYNTH.LOPE.SUSTAIN = false;
     envelope.sustain = false;
     
    // barTexture = new Texture2D(8, 8);
@@ -56,7 +53,7 @@ public void Update() {
 				lastNoteDegree = int.Parse(lastNoteDegreeString);
 				
 				if (Input.GetMouseButtonDown(0)) {
-					envelope = synth.KeyOn(scale.GetNote(lastNoteDegree), envelope);
+					envelope = synth.KeyOn(lastNoteDegree, envelope);
 					recipient.SendMessage("OnTouchDown",hit.point,
 					                      SendMessageOptions.DontRequireReceiver);
 				}
@@ -68,7 +65,7 @@ public void Update() {
 				if (Input.GetMouseButton(0)) {
 					lastNoteDegreeString = recipient.name;
 					lastNoteDegree = int.Parse(lastNoteDegreeString);
-					envelope = synth.KeyOn(scale.GetNote(lastNoteDegree), envelope);
+					envelope = synth.KeyOn(lastNoteDegree, envelope);
 					recipient.SendMessage("OnTouchStay",hit.point,
 					                      SendMessageOptions.DontRequireReceiver);
 				}
@@ -107,7 +104,7 @@ public void Update() {
 				lastNoteDegree = int.Parse(lastNoteDegreeString);
 
 				if (touch.phase == TouchPhase.Began) {
-						envelope = synth.KeyOn(scale.GetNote(lastNoteDegree), envelope);
+						envelope = synth.KeyOn(lastNoteDegree, envelope);
 						recipient.SendMessage("OnTouchDown",hit.point,
 						                      SendMessageOptions.DontRequireReceiver);
 				}
@@ -115,7 +112,7 @@ public void Update() {
 				if (touch.phase == TouchPhase.Moved) {
 						lastNoteDegreeString = recipient.name;
 						lastNoteDegree = int.Parse(lastNoteDegreeString);
-						envelope = synth.KeyOn(scale.GetNote(lastNoteDegree), envelope);
+						envelope = synth.KeyOn(lastNoteDegree, envelope);
 						//lastNoteDegree = recipient.name;
 							//noteRange * (int)Input.mousePosition.y / (int)Screen.height;
 
@@ -128,7 +125,7 @@ public void Update() {
 				if (touch.phase == TouchPhase.Stationary) {
 						lastNoteDegreeString = recipient.name;
 						lastNoteDegree = int.Parse(lastNoteDegreeString);
-						envelope = synth.KeyOn(scale.GetNote(lastNoteDegree), envelope);
+						envelope = synth.KeyOn(lastNoteDegree, envelope);
 						recipient.SendMessage("OnTouchStay",hit.point,
 						                      SendMessageOptions.DontRequireReceiver);
 				}

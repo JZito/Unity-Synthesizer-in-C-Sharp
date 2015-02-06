@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 
  public class Grid : MonoBehaviour
@@ -8,8 +9,10 @@ using System.Collections;
      public int GridWidth;
 	 public int GridHeight;
 	 public float countUpObject;
+	 public List<GameObject> tiles = new List<GameObject>();
 
      void Start() {
+		countUpObject = -1;
 
      	for(int y=0;y<GridHeight;y++)
 		{
@@ -24,22 +27,8 @@ using System.Collections;
 				//g.GetComponent<SpriteRenderer>().color = new Color(0,1 - (countUpObject / 100),countUpObject / 100,0.25f);
 				g.transform.parent = gameObject.transform;
 				g.name = countUpObjectString;
-				/*
-				OnCube newCube = g.GetComponent<OnCube>();
-				DisplayASequence displayASequence = g.GetComponent<DisplayASequence>();
-				Reset reset = g.GetComponent<Reset>();
-				var banana = g.GetComponent<AudioSource>();
-				banana.clip = cubeSounds[CountUpObject - 1];
-				g.name = "cube" +(CountUpObject);
-				g.name.Replace("(OnCube)","").Trim();
-				g.transform.parent = gameObject.transform;
-				//g.renderer.enabled = false;
-				newCube.row = y;
-				newCube.col = x;
-				displayASequence.row = y;
-				reset.row = y;
-				cubeList.Add(newCube);
-				*/
+				tiles.Add (g);
+
 			
 			}
 		}
