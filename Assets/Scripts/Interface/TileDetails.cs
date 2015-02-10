@@ -7,9 +7,11 @@ public class TileDetails : MonoBehaviour {
 	public Color touchColor;
 	public bool touchTrue;
 	public bool trigger;
+	public float note;
 
 	// Use this for initialization
 	void Start () {
+		print (this.name + note);
 		trigger = false;
 //		new Color ogColor = GetComponent<SpriteRenderer>().color;
 	
@@ -20,18 +22,19 @@ public class TileDetails : MonoBehaviour {
 	
 	}
 
-	void OnTouchDown () {
+	public void OnTouchDown () {
+//		print ("hello");
 		//GetComponent<SpriteRenderer> ().color = touchColor;
 		GetComponent<SpriteRenderer> ().color = touchColor;
 		StopCoroutine ("LerpColor");
 		//GetComponent<SpriteRenderer> ().color = touchColor;
 	}
 
-	void OnTouchStay () {
+	public void OnTouchStay () {
 		GetComponent<SpriteRenderer> ().color = touchColor;
 	}
 
-	void OnTouchExit () {
+	public void OnTouchExit () {
 		StartCoroutine ("LerpColor");
 	}
 

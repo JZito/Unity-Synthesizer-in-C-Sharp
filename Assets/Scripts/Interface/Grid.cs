@@ -8,8 +8,9 @@ using System.Collections.Generic;
      public GameObject tile;
      public int GridWidth;
 	 public int GridHeight;
-	 public float countUpObject;
+	 public int countUpObject;
 	 public List<GameObject> tiles = new List<GameObject>();
+	public List<float> note = new List<float> ();
 
      void Start() {
 		countUpObject = -1;
@@ -26,6 +27,7 @@ using System.Collections.Generic;
 				GameObject g = Instantiate(tile,new Vector3(x,y,0),Quaternion.identity)as GameObject;
 				//g.GetComponent<SpriteRenderer>().color = new Color(0,1 - (countUpObject / 100),countUpObject / 100,0.25f);
 				g.transform.parent = gameObject.transform;
+				g.GetComponent<TileDetails>().note = note[countUpObject];
 				g.name = countUpObjectString;
 				tiles.Add (g);
 

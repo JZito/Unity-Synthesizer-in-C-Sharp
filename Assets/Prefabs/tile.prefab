@@ -55,6 +55,8 @@ MonoBehaviour:
   originalColor: {r: .258823544, g: .843137264, b: .717647076, a: .278431386}
   touchColor: {r: 1, g: 0, b: 0, a: .376470596}
   touchTrue: 0
+  trigger: 0
+  note: 0
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

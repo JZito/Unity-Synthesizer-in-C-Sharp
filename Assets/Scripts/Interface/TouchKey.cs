@@ -9,25 +9,30 @@ public class TouchKey : MonoBehaviour {
 public Camera gameCam;
 [Range(0.003f, 3.0f)] public float env_atk = 1.0f;
 [Range(0.003f, 3.0f)] public float env_rel = 1.0f;
-[Range(5,12)] public int noteRange = 12;
+[Range(24,48)] public int scale = 24;
 public LayerMask touchInputMask;
 private GameObject[] touchesOld;
 private int lastNoteDegree = -1;
 private List<GameObject> touchList = new List<GameObject>();
 private Lope envelope;
-private RaycastHit hit;
+private RaycastHit2D hit;
 private string lastNoteDegreeString;
 private SynthControl synth;
+private GameObject recipient;
+public NReverb reverb;
 
 public void Start() {
     synth = GetComponent<SynthControl>();
     envelope = GetComponent<Lope>();
-//    noise = FindObjectOfType(NoiseController);
-//    seq = GetComponent.<AutoSequencer>();
-		//  SYNTH.LOPE.SUSTAIN = false;
+
     envelope.sustain = false;
-    
+	reverb = GetComponent<NReverb> ();
+
+
    // barTexture = new Texture2D(8, 8);
+		//    noise = FindObjectOfType(NoiseController);
+		//    seq = GetComponent.<AutoSequencer>();
+		//  SYNTH.LOPE.SUSTAIN = false;
 }
 
 public void Update() {
@@ -39,35 +44,41 @@ public void Update() {
 			touchesOld = new GameObject[touchList.Count];
 			touchList.CopyTo(touchesOld);
 			touchList.Clear();
-			
-			
+
 			RaycastHit2D hit = Physics2D.Raycast(gameCam.ScreenToWorldPoint
-			                                     (Input.mousePosition), Vector2.zero);       
+			                                     (Input.mousePosition), Vector2.zero); 
 			
+			GameObject recipient = hit.transform.gameObject;
+			reverb.wetMix = hit.transform.position.x / 18;
+		//	Debug.Log (hit.transform.position.x + "hit");
 			if(hit.collider!=null) {
 				
-				GameObject recipient = hit.transform.gameObject;
+
 				touchList.Add(recipient);
-				Debug.Log (recipient.name);
-				lastNoteDegreeString = recipient.name;
-				lastNoteDegree = int.Parse(lastNoteDegreeString);
+			//	Debug.Log (recipient.name);
+				//lastNoteDegreeString = recipient.name;
+				//lastNoteDegree = int.Parse(lastNoteDegreeString);
+
 				
 				if (Input.GetMouseButtonDown(0)) {
+					lastNoteDegree = scale + (int)recipient.GetComponent<TileDetails>().note;
 					envelope = synth.KeyOn(lastNoteDegree, envelope);
-					recipient.SendMessage("OnTouchDown",hit.point,
-					                      SendMessageOptions.DontRequireReceiver);
+					recipient.GetComponent<TileDetails>().OnTouchDown();
+				//	recipient.SendMessage("OnTouchDown",hit.point,
+				//	                      SendMessageOptions.DontRequireReceiver);
 				}
 				if (Input.GetMouseButtonUp(0)) {
 					envelope.KeyOff();
-					recipient.SendMessage("OnTouchUp",hit.point,
-					                      SendMessageOptions.DontRequireReceiver);
+					recipient.GetComponent<TileDetails>().OnTouchExit();
+					//recipient.SendMessage("OnTouchUp",hit.point,
+					//                      SendMessageOptions.DontRequireReceiver);
 				}
 				if (Input.GetMouseButton(0)) {
-					lastNoteDegreeString = recipient.name;
-					lastNoteDegree = int.Parse(lastNoteDegreeString);
+					lastNoteDegree = scale + (int)recipient.GetComponent<TileDetails>().note;
 					envelope = synth.KeyOn(lastNoteDegree, envelope);
-					recipient.SendMessage("OnTouchStay",hit.point,
-					                      SendMessageOptions.DontRequireReceiver);
+					recipient.GetComponent<TileDetails>().OnTouchStay();
+					//recipient.SendMessage("OnTouchStay",hit.point,
+					//                      SendMessageOptions.DontRequireReceiver);
 				}
 				
 			}
@@ -82,6 +93,7 @@ public void Update() {
 		
 		
 #endif
+
 	envelope.attack = env_atk;
 	envelope.release = env_rel;
 	if (Input.touchCount > 0){
@@ -94,45 +106,49 @@ public void Update() {
 			
 			RaycastHit2D hit = Physics2D.Raycast(gameCam.ScreenToWorldPoint
 				                             (Input.mousePosition), Vector2.zero);       
-			
+				reverb.wetMix = hit.transform.position.x / 18;
 			if(hit.collider!=null) {
 				
 				GameObject recipient = hit.transform.gameObject;
 				touchList.Add(recipient);
-				Debug.Log (recipient.name);
-				lastNoteDegreeString = recipient.name;
-				lastNoteDegree = int.Parse(lastNoteDegreeString);
-
+				//Debug.Log (recipient.name);
+				//lastNoteDegreeString = recipient.name;
+				//lastNoteDegree = int.Parse(lastNoteDegreeString);
+				
 				if (touch.phase == TouchPhase.Began) {
+						lastNoteDegree =  scale + (int)recipient.GetComponent<TileDetails>().note;
 						envelope = synth.KeyOn(lastNoteDegree, envelope);
-						recipient.SendMessage("OnTouchDown",hit.point,
-						                      SendMessageOptions.DontRequireReceiver);
+						recipient.GetComponent<TileDetails>().OnTouchDown();
+				//		recipient.SendMessage("OnTouchDown",hit.point,
+				//		                      SendMessageOptions.DontRequireReceiver);
 				}
 
 				if (touch.phase == TouchPhase.Moved) {
-						lastNoteDegreeString = recipient.name;
-						lastNoteDegree = int.Parse(lastNoteDegreeString);
+						lastNoteDegree = scale + (int)recipient.GetComponent<TileDetails>().note;
 						envelope = synth.KeyOn(lastNoteDegree, envelope);
+				//		recipient.GetComponent<TileDetails>().OnTouchDown();
 						//lastNoteDegree = recipient.name;
 							//noteRange * (int)Input.mousePosition.y / (int)Screen.height;
 
 					}
 				if (touch.phase == TouchPhase.Ended) {
 						envelope.KeyOff();
-						recipient.SendMessage("OnTouchUp",hit.point,
-						                      SendMessageOptions.DontRequireReceiver);
+						recipient.GetComponent<TileDetails>().OnTouchExit();
+				//		recipient.SendMessage("OnTouchUp",hit.point,
+				//		                      SendMessageOptions.DontRequireReceiver);
 				}
 				if (touch.phase == TouchPhase.Stationary) {
-						lastNoteDegreeString = recipient.name;
-						lastNoteDegree = int.Parse(lastNoteDegreeString);
+						lastNoteDegree = scale + (int)recipient.GetComponent<TileDetails>().note;
 						envelope = synth.KeyOn(lastNoteDegree, envelope);
-						recipient.SendMessage("OnTouchStay",hit.point,
-						                      SendMessageOptions.DontRequireReceiver);
+						recipient.GetComponent<TileDetails>().OnTouchStay();
+					//	recipient.SendMessage("OnTouchStay",hit.point,
+					//	                      SendMessageOptions.DontRequireReceiver);
 				}
 				if (touch.phase == TouchPhase.Canceled) {
 						envelope.KeyOff();
-						recipient.SendMessage("OnTouchExit",hit.point,
-						                      SendMessageOptions.DontRequireReceiver);
+						recipient.GetComponent<TileDetails>().OnTouchExit();
+					//	recipient.SendMessage("OnTouchExit",hit.point,
+					//	                      SendMessageOptions.DontRequireReceiver);
 				}
 				
 			}

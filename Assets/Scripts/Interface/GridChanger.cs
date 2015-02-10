@@ -7,9 +7,10 @@ public class GridChanger : MonoBehaviour {
 
 	public Vector3[] beatPositions;
 	public List<GameObject> observers = new List<GameObject>();
+	public TileDetails details;
 	public PatternCounter pattern1;
 	public Grid grid;
-	public float beatPoint;
+	public int beatPoint;
 	private BeatObserver beatObserver;
 	private int beatCounter;
 	public float beat;
@@ -31,30 +32,41 @@ public class GridChanger : MonoBehaviour {
 	void Start () {
 		grid = GetComponent<Grid> ();
 		fadeOut = false;
-		beatObserver = GetComponent<BeatObserver>();
 		beatCounter = 0;
 		//MainSpawner = GameObject.FindGameObjectWithTag ("TheSpawner");
 		audio.clip = sample;
 	//	pattern1.observers.Add (this.gameObject);
+
+		foreach (GameObject observer in observers) {
+			beatObserver = observer.gameObject.GetComponent<BeatObserver>();
+		}
+
+		//foreach (GameObject g in grid.tiles) {
+		//	details = g.GetComponent<TileDetails>();
+		//}
 		
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		print ("update");
-		foreach (GameObject bo in observers)
+//		print ("update");
+		// for int i = 0 i <= observers.length i++
+		//
+		foreach (GameObject observer in observers)
+		//	from bo in observers
 		{
-			beatObserver = bo.gameObject.GetComponent<BeatObserver>();
-			print ("for each");
+			//beatObserver = observer.gameObject.GetComponent<BeatObserver>();
+//			print ("for each");
 		if ((beatObserver.beatMask & BeatType.OnBeat) == BeatType.OnBeat) {
 			if (beatObserver.beatValue != BeatValue.None) {
-				beatPoint = beatPoint + (1/BeatDecimalValues.values [(int)beatObserver.beatValue]);//beatPositions[beatCounter];
+				beatPoint = beatPoint + Mathf.RoundToInt ((1/BeatDecimalValues.values [(int)beatObserver.beatValue]));//beatPositions[beatCounter];
 				print (beatPoint);
 				string beatPointString = beatPoint.ToString ();
 				foreach (GameObject g in grid.tiles) {
+						details = g.GetComponent<TileDetails>();
 					if (g.name == beatPointString) { //grid.tiles[beatpoint] = beatpoint???
-						g.GetComponent<TileDetails>().FadeToBlack();
+						details.FadeToBlack();
 						} else {
 								
 							}

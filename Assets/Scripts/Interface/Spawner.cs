@@ -41,7 +41,7 @@ public class Spawner : MonoBehaviour {
 			if(decider <= 4)
 			{
 				//int randomNumber = Random.Range (0,6);
-				patternCount1 = MainSpawner.GetComponent<PatternArray> ().patterns [0];
+				patternCount1 = MainSpawner.GetComponent<PatternArray> ().patterns [Random.Range (0,1)];
 				GameObject g = Instantiate(moverPrefab,new Vector3(16,row,0),Quaternion.identity)as GameObject;
 		//		print ((int)group + "group");
 				var uniqueArray = MainSpawner.GetComponent<SoundArray> ().arrayOfArrays [(int)group];
