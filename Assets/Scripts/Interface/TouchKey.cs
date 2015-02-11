@@ -49,7 +49,7 @@ public void Update() {
 			                                     (Input.mousePosition), Vector2.zero); 
 			
 			GameObject recipient = hit.transform.gameObject;
-			reverb.wetMix = hit.transform.position.x / 18;
+			reverb.wetMix = hit.transform.position.x / 24;
 		//	Debug.Log (hit.transform.position.x + "hit");
 			if(hit.collider!=null) {
 				
@@ -106,7 +106,7 @@ public void Update() {
 			
 			RaycastHit2D hit = Physics2D.Raycast(gameCam.ScreenToWorldPoint
 				                             (Input.mousePosition), Vector2.zero);       
-				reverb.wetMix = hit.transform.position.x / 18;
+				reverb.wetMix = hit.transform.position.x / 24;
 			if(hit.collider!=null) {
 				
 				GameObject recipient = hit.transform.gameObject;

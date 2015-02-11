@@ -7,11 +7,13 @@ public class GridChanger : MonoBehaviour {
 
 	public Vector3[] beatPositions;
 	public List<GameObject> observers = new List<GameObject>();
+	public List<AudioClip> soundsArray = new List<AudioClip> ();
 	public TileDetails details;
 	public PatternCounter pattern1;
 	public Grid grid;
 	public int beatPoint;
 	private BeatObserver beatObserver;
+	public GameObject observer;
 	private int beatCounter;
 	public float beat;
 	public float row;
@@ -34,46 +36,44 @@ public class GridChanger : MonoBehaviour {
 		fadeOut = false;
 		beatCounter = 0;
 		//MainSpawner = GameObject.FindGameObjectWithTag ("TheSpawner");
-		audio.clip = sample;
-	//	pattern1.observers.Add (this.gameObject);
 
-		foreach (GameObject observer in observers) {
-			beatObserver = observer.gameObject.GetComponent<BeatObserver>();
+		for (int i = 0; i < observers.Count; i++) {
+			print ("in the for loop" + i);	
+			observer = observers [i];
+			observer.GetComponent<AudioSource>().clip = soundsArray[i];
 		}
-
-		//foreach (GameObject g in grid.tiles) {
-		//	details = g.GetComponent<TileDetails>();
-		//}
+		/*
+		for (int i = 0; i < observers.Count; i++) {
+			observer = observers [i];
+			beatObserver = observer.gameObject.GetComponent<BeatObserver>();
+				}
+				*/
 		
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-//		print ("update");
-		// for int i = 0 i <= observers.length i++
-		//
-		foreach (GameObject observer in observers)
-		//	from bo in observers
-		{
-			//beatObserver = observer.gameObject.GetComponent<BeatObserver>();
-//			print ("for each");
-		if ((beatObserver.beatMask & BeatType.OnBeat) == BeatType.OnBeat) {
-			if (beatObserver.beatValue != BeatValue.None) {
-				beatPoint = beatPoint + Mathf.RoundToInt ((1/BeatDecimalValues.values [(int)beatObserver.beatValue]));//beatPositions[beatCounter];
-				print (beatPoint);
-				string beatPointString = beatPoint.ToString ();
-				foreach (GameObject g in grid.tiles) {
-						details = g.GetComponent<TileDetails>();
-					if (g.name == beatPointString) { //grid.tiles[beatpoint] = beatpoint???
-						details.FadeToBlack();
-						} else {
-								
-							}
-						} 
-						audio.Play ();
-						beatCounter = (++beatCounter == beatPositions.Length ? 0 : beatCounter);
-				}			
+
+		for (int i = 0; i < observers.Count; i++) {
+			int randomizer = Random.Range (0, 1);
+			observer = observers [i];
+			beatObserver = observer.gameObject.GetComponent<BeatObserver>();
+			if ((beatObserver.beatMask & BeatType.OnBeat) == BeatType.OnBeat) {
+				observer.audio.Play ();
+//	beatPoint = beatPoint + (Mathf.RoundToInt ((1/BeatDecimalValues.values 
+//                                      [(int)beatObserver.beatValue])) * 2);//beatPositions[beatCounter];
+				print (beatPoint + "bp");
+				//grid.tiles[beatPoint].GetComponent<TileDetails>().FadeToBlack();
+				if (randomizer == 0) {
+					print ("random zero");
+					grid.tiles[beatCounter + 16].GetComponent<TileDetails>().FadeToBlack();
+				}
+				if (randomizer == 1) {
+					print ("random one");
+					grid.tiles[beatCounter].GetComponent<TileDetails>().FadeToBlack();
+				}
+				beatCounter = (++beatCounter == beatPositions.Length ? 0 : beatCounter);
 			}
 		}
 	}

@@ -22,6 +22,7 @@ public class BeatObserver : MonoBehaviour {
 	[HideInInspector]
 	public BeatType beatMask;
 	public BeatValue beatValue;
+	public AudioClip sound;
 
 
 	void Start ()
