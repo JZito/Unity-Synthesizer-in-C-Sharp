@@ -56,7 +56,7 @@ public class GridChanger : MonoBehaviour {
 	{
 
 		for (int i = 0; i < observers.Count; i++) {
-			int randomizer = Random.Range (0, 1);
+			int randomizer = Random.Range (0, 3);
 			observer = observers [i];
 			beatObserver = observer.gameObject.GetComponent<BeatObserver>();
 			if ((beatObserver.beatMask & BeatType.OnBeat) == BeatType.OnBeat) {
@@ -65,15 +65,16 @@ public class GridChanger : MonoBehaviour {
 //                                      [(int)beatObserver.beatValue])) * 2);//beatPositions[beatCounter];
 				print (beatPoint + "bp");
 				//grid.tiles[beatPoint].GetComponent<TileDetails>().FadeToBlack();
-				if (randomizer == 0) {
+				if (randomizer < 2) {
 					print ("random zero");
-					grid.tiles[beatCounter + 16].GetComponent<TileDetails>().FadeToBlack();
+					grid.tiles[beatCounter + (beatCounter + 16)].GetComponent<TileDetails>().FadeToBlack();
 				}
-				if (randomizer == 1) {
+				if (randomizer >= 2) {
 					print ("random one");
 					grid.tiles[beatCounter].GetComponent<TileDetails>().FadeToBlack();
 				}
-				beatCounter = (++beatCounter == beatPositions.Length ? 0 : beatCounter);
+				++beatCounter;
+				// beatCounter = (++beatCounter == beatPositions.Length ? 0 : beatCounter);
 			}
 		}
 	}
