@@ -4,14 +4,17 @@ using System.Collections;
 public class TileDetails : MonoBehaviour {
 
 	public Color originalColor;
+	public SpriteRenderer tileColor;
 	public Color touchColor;
 	public bool touchTrue;
 	public bool trigger;
+	public bool coroutineRunning = false;
 	public float note;
 
 	// Use this for initialization
 	void Start () {
-		print (this.name + note);
+		tileColor = gameObject.GetComponent<SpriteRenderer> ();
+//		print (this.name + note);
 		trigger = false;
 //		new Color ogColor = GetComponent<SpriteRenderer>().color;
 	
@@ -19,19 +22,33 @@ public class TileDetails : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		print (coroutineRunning);
 	
 	}
 
 	public void OnTouchDown () {
-//		print ("hello");
-		//GetComponent<SpriteRenderer> ().color = touchColor;
-		GetComponent<SpriteRenderer> ().color = touchColor;
-		StopCoroutine ("LerpColor");
-		//GetComponent<SpriteRenderer> ().color = touchColor;
+		tileColor.color = touchColor;
+
+		while (coroutineRunning) {
+				StopCoroutine ("LerpColor");
+				print ("stop!");
+				coroutineRunning = false;
+
+				}
+
 	}
 
 	public void OnTouchStay () {
-		GetComponent<SpriteRenderer> ().color = touchColor;
+		tileColor.color = touchColor;
+
+		while (coroutineRunning) {
+			StopCoroutine ("LerpColor");
+			print ("stop!");
+			coroutineRunning = false;
+
+		}
+
 	}
 
 	public void OnTouchExit () {
@@ -48,15 +65,17 @@ public class TileDetails : MonoBehaviour {
 	{
 		for (float t = 0; t <= 1.0f; t += Time.deltaTime)
 		{
-			GetComponent<SpriteRenderer>().color = Color.Lerp(touchColor, originalColor, t);
+			coroutineRunning = true;
+			tileColor.color = Color.Lerp(touchColor, originalColor, t);
 			yield return null;
+			coroutineRunning = false;
 		}
 	}
 
 	public IEnumerator FadeBlack() {
 		for (float t = 0; t <= 2.0f; t += Time.deltaTime)
 		{
-			GetComponent<SpriteRenderer>().color = Color.Lerp(Color.black, originalColor, t);
+			tileColor.color = Color.Lerp(Color.black, originalColor, t);
 
 			yield return null;
 		}

@@ -12,7 +12,7 @@ using System.Collections.Generic;
 	 public List<GameObject> tiles = new List<GameObject>();
 	public List<float> note = new List<float> ();
 
-     void Start() {
+     void Awake() {
 		countUpObject = -1;
 
      	for(int y=0;y<GridHeight;y++)

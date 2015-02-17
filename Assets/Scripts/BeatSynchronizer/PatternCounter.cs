@@ -10,7 +10,8 @@ using SynchronizerData;
 /// </summary>
 public class PatternCounter : MonoBehaviour {
 
-	public BeatValue[] beatValues;
+	//public BeatValue[] beatValues;
+	public List<BeatValue> beatvalues = new List<BeatValue> ();
 	public int beatScalar = 1;
 	public float loopTime = 30f;
 	public AudioSource audioSource;
@@ -26,11 +27,11 @@ public class PatternCounter : MonoBehaviour {
 	void Awake ()
 	{
 		float audioBpm = audioSource.GetComponent<BeatSynchronizer>().bpm;
-		samplePeriods = new float[beatValues.Length];
+		samplePeriods = new float[beatvalues.Count];
 
 		// Calculate number of samples between each beat in the sequence.
-		for (int i = 0; i < beatValues.Length; ++i) {
-			samplePeriods[i] = (60f / (audioBpm * BeatDecimalValues.values[(int)beatValues[i]])) * audioSource.clip.frequency;
+		for (int i = 0; i < beatvalues.Count; ++i) {
+			samplePeriods[i] = (60f / (audioBpm * BeatDecimalValues.values[(int)beatvalues[i]])) * audioSource.clip.frequency;
 			samplePeriods[i] *= beatScalar;
 		}
 		
@@ -91,45 +92,23 @@ public class PatternCounter : MonoBehaviour {
 			if (currentSample >= nextBeatSample) {
 				// Since this is a specific pattern of beats, we don't need to track different beat types.
 				// Instead, client can index a custom beat counter to track which beat in the sequence has fired.
-
-//				foreach (GameObject obj in observers) {
+				
+				//				foreach (GameObject obj in observers) {
 				for (int i = 0; i < observers.Count; i++)
 				{
 					GameObject obj = observers[i];
+					var objScript = obj.GetComponent<BeatObserver>();
 					if (obj != null)
 					{
-					int beatValueIndex = (sequenceIndex - 1 == -1 ? beatValues.Length -1 : sequenceIndex-1);
-					obj.GetComponent<BeatObserver>().BeatNotify(beatValues[beatValueIndex]);
-						if (obj.transform.position.x >= 24)
-						{
-							float volume = 1;
-							float t = 0;
-							while(t < 1)
-							{
-								t += Time.deltaTime/2f;
-								volume = Mathf.Lerp(1, 0, t);
-								obj.audio.volume = volume;
-								if (obj.audio.volume == 0)
-								{
-//									print ("it's 0");
-									observers.Remove(obj);
-									DestroyObject(obj.gameObject);
-								}
-							}
-						}
-				//	if (obj.transform.position.x >= 20)
-				//	{
-				//		observers.Remove(obj);
-				//		DestroyObject(obj.gameObject);
-				//	}
+						int beatValueIndex = (sequenceIndex - 1 == -1 ? beatvalues.Count -1 : sequenceIndex-1);
+						objScript.BeatNotify(beatvalues[beatValueIndex]);
 					}
 				}
 				nextBeatSample += samplePeriods[sequenceIndex];
-				sequenceIndex = (++sequenceIndex == beatValues.Length ? 0 : sequenceIndex);
+				sequenceIndex = (++sequenceIndex == beatvalues.Count ? 0 : sequenceIndex);
 			}
-
+			
 			yield return new WaitForSeconds(loopTime / 1000f);
 		}
 	}
-
 }
