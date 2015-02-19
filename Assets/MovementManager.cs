@@ -5,56 +5,82 @@ using SynchronizerData;
 
 public class MovementManager : MonoBehaviour {
 
-	//public List<GameObject> objects = new List<GameObject>();
-	public List<TileDetails> tDetails = new List<TileDetails> ();
-
-	//public TileDetails[] tDetails;
-	//public TileDetails[] triggers;
-	public List<TileDetails> triggers = new List<TileDetails> ();
+	//public List<TileDetails> triggers = new List<TileDetails> ();
+	public int cutoff;
+	public int switchCount;
+	public List<int> moves = new List<int> ();
+	public List<GameObject> previousObservers = new List<GameObject>();
 	public GameObject board;
+	public BeatsArray beatsArray;
+	public ContentTrigger contentTrigger;
 	public Generate generate;
-	public PatternArray patternArray;
-	public GameObject pattern;
-
-	public Vector3[] beatPositions;
-	//public List<int> intList = new List<int>();
-	
+	public Grid grid;
 	private BeatObserver beatObserver;
-	private int beatCounter;
+	private int moveCounter;
+	private int ran;
+	private int beatCount;
+	public int randomBeatChooser = 2;
+	public int randomSwitchInt = 3;
 
-	// Use this for initialization
 	void Start () {
-		var tilesList = board.GetComponent<Grid> ();
-
-		int random = Random.Range (0, 5);
-		pattern = patternArray.patterns [Random.Range (0, 3)];
-		pattern.GetComponent<PatternCounter>().observers.Add (this.gameObject);
+		grid = board.GetComponent<Grid> ();
+		ran = Random.Range (0, 5);
 		beatObserver = GetComponent<BeatObserver>();
-		beatCounter = 0;
-		audio.clip = generate.audioList[random];
-		var boo = generate.movesList [random];
-		for (int i = 0; i < tilesList.tiles.Count; i++) {
-			print ("boo");
-			tDetails.Add(tilesList.tiles[i].GetComponent<TileDetails>());		
-		}
-		for(int i = 0; i < generate.movesList[random].Count; i++) {
-			print ("for");
-			print (tDetails.Count);
-			triggers.Add (tDetails[boo[i]]);}
-	
+		moveCounter = 0;
+		audio.clip = generate.audioList[ran];
+		beatsArray.beats[randomBeatChooser].GetComponent<BeatCounter>().observers.Add (this.gameObject);
+		contentTrigger.StartChangeMoves(this.gameObject.GetComponent<MovementManager>());
+		StartCoroutine (ChangeBeats ());
 	}
+
+
 	
 	// Update is called once per frame
 	void Update () {
-
-		if ((beatObserver.beatMask & BeatType.OnBeat) == BeatType.OnBeat) {
-
-	//		transform.position = new Vector3(beatPositions[beatCounter].x, transform.position.y, 0);
-			triggers[beatCounter].FadeToBlack();
-//			print (beatCounter + "bc");
+		if ((beatObserver.beatMask & BeatType.DownBeat) == BeatType.DownBeat) {
+			var tile = grid.tiles[moves[moveCounter]].GetComponent<TileDetails>();
+			tile.FadeToBlack();
 			audio.Play ();
-			beatCounter = (++beatCounter == beatPositions.Length ? 0 : beatCounter);
+			moveCounter = (++moveCounter == moves.Count ? 0 : moveCounter);
+			print ("mc" + moveCounter);
+//			if (grid.tiles [moves [moveCounter]] == null) {
+//				contentTrigger.StartChangeMoves(this.gameObject.GetComponent<MovementManager>());		
+//			}
+//			if (switchCount >= cutoff) {
+//				contentTrigger.StartChangeBeats(bCounter, this.gameObject);
+//				switchCount = 0;
+//			}
 		}
+	}
+
+
+
+//		if ((beatObserver.beatMask & BeatType.UpBeat) == BeatType.UpBeat) {
+//			transform.Rotate(Vector3.forward, 45f);
+//		}
 	
+
+	IEnumerator ChangeBeats () {
+		if (true) {
+			while (switchCount >= randomSwitchInt) {
+				for (int i = 0; i< beatsArray.beats.Length; i++) {
+					if (beatsArray.beats [i].GetComponent<BeatCounter> ().observers.Contains (this.gameObject)) {
+						previousObservers.Remove (this.gameObject);
+						print ("whopie");
+					}
+					var randomNewObservers = beatsArray.beats [randomBeatChooser].GetComponent<BeatCounter> ().observers;    
+					randomNewObservers.Add (this.gameObject);
+					print ("changebeats");
+					switchCount = 0;
+					beatCount = 0;
+					randomSwitchInt = Random.Range (0, 6);
+					randomBeatChooser = Random.Range (0, 9);
+
+				}
+
+			}
+			yield return null;
+		}		
+
 	}
 }

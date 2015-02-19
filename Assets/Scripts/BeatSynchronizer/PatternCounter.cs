@@ -12,6 +12,7 @@ public class PatternCounter : MonoBehaviour {
 
 	//public BeatValue[] beatValues;
 	public List<BeatValue> beatvalues = new List<BeatValue> ();
+	public List<int> moveValues = new List<int> ();
 	public int beatScalar = 1;
 	public float loopTime = 30f;
 	public AudioSource audioSource;
@@ -20,21 +21,28 @@ public class PatternCounter : MonoBehaviour {
 
 	private float nextBeatSample;
 	private float[] samplePeriods;
-	private int sequenceIndex;
+	public int sequenceIndex;
 	private float currentSample;
 	
 	
 	void Awake ()
 	{
+		NewSamplePeriods ();
+
+		
+
+	}
+
+	public void NewSamplePeriods () {
 		float audioBpm = audioSource.GetComponent<BeatSynchronizer>().bpm;
 		samplePeriods = new float[beatvalues.Count];
-
+		
 		// Calculate number of samples between each beat in the sequence.
 		for (int i = 0; i < beatvalues.Count; ++i) {
 			samplePeriods[i] = (60f / (audioBpm * BeatDecimalValues.values[(int)beatvalues[i]])) * audioSource.clip.frequency;
 			samplePeriods[i] *= beatScalar;
 		}
-		
+
 		nextBeatSample = 0f;
 		sequenceIndex = 0;
 	}
@@ -106,6 +114,7 @@ public class PatternCounter : MonoBehaviour {
 				}
 				nextBeatSample += samplePeriods[sequenceIndex];
 				sequenceIndex = (++sequenceIndex == beatvalues.Count ? 0 : sequenceIndex);
+				print (sequenceIndex + this.name);
 			}
 			
 			yield return new WaitForSeconds(loopTime / 1000f);
