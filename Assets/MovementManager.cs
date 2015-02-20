@@ -9,7 +9,7 @@ public class MovementManager : MonoBehaviour {
 	public int cutoff;
 	public int switchCount;
 	public List<int> moves = new List<int> ();
-	public List<GameObject> previousObservers = new List<GameObject>();
+	//public List<GameObject> previousObservers = new List<GameObject>();
 	public GameObject board;
 	public BeatsArray beatsArray;
 	public ContentTrigger contentTrigger;
@@ -37,23 +37,23 @@ public class MovementManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if ((beatObserver.beatMask & BeatType.DownBeat) == BeatType.DownBeat) {
+		if ((beatObserver.beatMask & BeatType.OnBeat) == BeatType.OnBeat) {
 			var tile = grid.tiles[moves[moveCounter]].GetComponent<TileDetails>();
 			tile.FadeToBlack();
 			audio.Play ();
 			moveCounter = (++moveCounter == moves.Count ? 0 : moveCounter);
-			print ("mc" + moveCounter);
-//			if (grid.tiles [moves [moveCounter]] == null) {
-//				contentTrigger.StartChangeMoves(this.gameObject.GetComponent<MovementManager>());		
-//			}
-//			if (switchCount >= cutoff) {
-//				contentTrigger.StartChangeBeats(bCounter, this.gameObject);
-//				switchCount = 0;
-//			}
+			++switchCount;
 		}
 	}
 
+	public bool switcher () {
+			if (switchCount >= randomSwitchInt)
+			{
+				return true;
+			}
 
+			return false;
+		}
 
 //		if ((beatObserver.beatMask & BeatType.UpBeat) == BeatType.UpBeat) {
 //			transform.Rotate(Vector3.forward, 45f);
@@ -61,11 +61,15 @@ public class MovementManager : MonoBehaviour {
 	
 
 	IEnumerator ChangeBeats () {
-		if (true) {
-			while (switchCount >= randomSwitchInt) {
+		print ("change called");
+		print (switcher ());
+		print (randomSwitchInt + "randomSwitchInt");
+
+			if (switcher()) {
+				print ("switchcount >= randomswitch");
 				for (int i = 0; i< beatsArray.beats.Length; i++) {
 					if (beatsArray.beats [i].GetComponent<BeatCounter> ().observers.Contains (this.gameObject)) {
-						previousObservers.Remove (this.gameObject);
+						beatsArray.beats [i].GetComponent<BeatCounter> ().observers.Remove (this.gameObject);
 						print ("whopie");
 					}
 					var randomNewObservers = beatsArray.beats [randomBeatChooser].GetComponent<BeatCounter> ().observers;    
@@ -73,14 +77,14 @@ public class MovementManager : MonoBehaviour {
 					print ("changebeats");
 					switchCount = 0;
 					beatCount = 0;
-					randomSwitchInt = Random.Range (0, 6);
+					randomSwitchInt = Random.Range (3, 16);
 					randomBeatChooser = Random.Range (0, 9);
 
 				}
 
 			}
-			yield return null;
-		}		
+			yield return new WaitForSeconds (0.05f);
+				
 
 	}
 }

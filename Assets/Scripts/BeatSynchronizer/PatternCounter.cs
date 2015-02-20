@@ -92,6 +92,9 @@ public class PatternCounter : MonoBehaviour {
 	/// required, WaitForSeconds() can be replaced by WaitForFixedUpdate(), which will place this coroutine's execution
 	/// right after FixedUpdate().
 	/// </remarks>
+	/// 
+	/// 
+
 	IEnumerator PatternCheck ()
 	{
 		while (audioSource.isPlaying) {
@@ -106,11 +109,11 @@ public class PatternCounter : MonoBehaviour {
 				{
 					GameObject obj = observers[i];
 					var objScript = obj.GetComponent<BeatObserver>();
-					if (obj != null)
-					{
-						int beatValueIndex = (sequenceIndex - 1 == -1 ? beatvalues.Count -1 : sequenceIndex-1);
-						objScript.BeatNotify(beatvalues[beatValueIndex]);
-					}
+				//	if (obj != null)
+				//	{
+				//		int beatValueIndex = (sequenceIndex - 1 == -1 ? beatvalues.Count -1 : sequenceIndex-1);
+						objScript.BeatNotify();
+
 				}
 				nextBeatSample += samplePeriods[sequenceIndex];
 				sequenceIndex = (++sequenceIndex == beatvalues.Count ? 0 : sequenceIndex);
@@ -120,4 +123,5 @@ public class PatternCounter : MonoBehaviour {
 			yield return new WaitForSeconds(loopTime / 1000f);
 		}
 	}
+
 }

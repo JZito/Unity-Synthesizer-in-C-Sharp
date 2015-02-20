@@ -19,32 +19,31 @@ public class BeatCounter : MonoBehaviour {
 	public float loopTime = 30f;
 	public AudioSource audioSource;
 	public List<GameObject> observers = new List<GameObject> ();
-	//public GameObject[] observers;
 	
 	private float nextBeatSample;
 	private float samplePeriod;
 	private float sampleOffset;
 	private float currentSample;
-
+	
 	
 	void Awake ()
 	{
 		// Calculate number of samples between each beat.
 		float audioBpm = audioSource.GetComponent<BeatSynchronizer>().bpm;
 		samplePeriod = (60f / (audioBpm * BeatDecimalValues.values[(int)beatValue])) * audioSource.clip.frequency;
-
+		
 		if (beatOffset != BeatValue.None) {
 			sampleOffset = (60f / (audioBpm * BeatDecimalValues.values[(int)beatOffset])) * audioSource.clip.frequency;
 			if (negativeBeatOffset) {
 				sampleOffset = samplePeriod - sampleOffset;
 			}
 		}
-
+		
 		samplePeriod *= beatScalar;
 		sampleOffset *= beatScalar;
 		nextBeatSample = 0f;
 	}
-
+	
 	/// <summary>
 	/// Initializes and starts the coroutine that checks for beat occurrences. The nextBeatSample field is initialized to 
 	/// exactly match up with the sample that corresponds to the time the audioSource clip started playing (via PlayScheduled).
@@ -63,7 +62,7 @@ public class BeatCounter : MonoBehaviour {
 	{
 		BeatSynchronizer.OnAudioStart += StartBeatCheck;
 	}
-
+	
 	/// <summary>
 	/// Unsubscribe the BeatCheck() coroutine from the beat synchronizer's event.
 	/// </summary>
@@ -75,7 +74,7 @@ public class BeatCounter : MonoBehaviour {
 	{
 		BeatSynchronizer.OnAudioStart -= StartBeatCheck;
 	}
-
+	
 	/// <summary>
 	/// This method checks if a beat has occurred in the audio by comparing the current sample position of the audio system's dsp time 
 	/// to the next expected sample value of the beat. The frequency of the checks is controlled by the loopTime field.
@@ -92,15 +91,14 @@ public class BeatCounter : MonoBehaviour {
 			currentSample = (float)AudioSettings.dspTime * audioSource.clip.frequency;
 			
 			if (currentSample >= (nextBeatSample + sampleOffset)) {
-				 for (int i = 0; i < observers.Count; i++) {
-				 	var bo = observers[i].GetComponent<BeatObserver>();
-				 	bo.BeatNotify(beatType);
-				 }
+				foreach (GameObject obj in observers) {
+					obj.GetComponent<BeatObserver>().BeatNotify(beatType);
+				}
 				nextBeatSample += samplePeriod;
 			}
-
+			
 			yield return new WaitForSeconds(loopTime / 1000f);
 		}
 	}
-
+	
 }

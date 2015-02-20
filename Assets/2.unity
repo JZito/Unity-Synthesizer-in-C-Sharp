@@ -162,13 +162,61 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beatValue: 2
-  beatScalar: 1
+  beatScalar: 4
   beatOffset: 0
   negativeBeatOffset: 0
-  beatType: 8
+  beatType: 2
   loopTime: 30
   audioSource: {fileID: 1834537811}
   observers: []
+--- !u!1 &252615435
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 252615437}
+  - 114: {fileID: 252615436}
+  m_Layer: 0
+  m_Name: Pattern2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &252615436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 252615435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea09543a04dee4515a80baa90060a389, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beatvalues: 03000000
+  moveValues: 
+  beatScalar: 1
+  loopTime: 30
+  audioSource: {fileID: 1834537811}
+  observers:
+  - {fileID: 1814085187}
+  patternColor: {r: 0, g: 0, b: 0, a: 0}
+  sequenceIndex: 0
+--- !u!4 &252615437
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 252615435}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.72070694, y: -2.87858868, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
 --- !u!1 &295494262
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,13 +406,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beatValue: 10
-  beatScalar: 1
+  beatScalar: 4
   beatOffset: 0
   negativeBeatOffset: 0
-  beatType: 8
+  beatType: 2
   loopTime: 30
   audioSource: {fileID: 1834537811}
-  observers: []
+  observers:
+  - {fileID: 732809557}
 --- !u!1 &608572750
 GameObject:
   m_ObjectHideFlags: 0
@@ -380,7 +429,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &608572751
 Transform:
   m_ObjectHideFlags: 0
@@ -678,7 +727,6 @@ MonoBehaviour:
   cutoff: 0
   switchCount: 0
   moves: 
-  previousObservers: []
   board: {fileID: 609256310}
   beatsArray: {fileID: 608572752}
   contentTrigger: {fileID: 1136862040}
@@ -697,10 +745,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dc6bf181cdb14aab9c6f511c928132c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beatWindow: 0
+  beatWindow: 25
   beatMask: 0
-  beatValue: 0
-  sound: {fileID: 0}
 --- !u!4 &732809560
 Transform:
   m_ObjectHideFlags: 0
@@ -722,7 +768,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -811,10 +857,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beatValue: 8
-  beatScalar: 1
+  beatScalar: 4
   beatOffset: 0
   negativeBeatOffset: 0
-  beatType: 8
+  beatType: 2
   loopTime: 30
   audioSource: {fileID: 1834537811}
   observers: []
@@ -830,7 +876,7 @@ GameObject:
   - 114: {fileID: 848053422}
   - 82: {fileID: 848053424}
   m_Layer: 0
-  m_Name: Observer
+  m_Name: Observer4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -862,7 +908,6 @@ MonoBehaviour:
   cutoff: 0
   switchCount: 0
   moves: 
-  previousObservers: []
   board: {fileID: 609256310}
   beatsArray: {fileID: 608572752}
   contentTrigger: {fileID: 1136862040}
@@ -881,10 +926,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dc6bf181cdb14aab9c6f511c928132c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beatWindow: 0
+  beatWindow: 17
   beatMask: 0
-  beatValue: 0
-  sound: {fileID: 0}
 --- !u!82 &848053424
 AudioSource:
   m_ObjectHideFlags: 0
@@ -894,7 +937,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1075,6 +1118,54 @@ MonoBehaviour:
   - {fileID: 848053420}
   patternColor: {r: .425608516, g: .801470578, b: 0, a: 0}
   sequenceIndex: 0
+--- !u!1 &949690511
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 949690513}
+  - 114: {fileID: 949690512}
+  m_Layer: 0
+  m_Name: Pattern1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &949690512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 949690511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea09543a04dee4515a80baa90060a389, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beatvalues: 01000000
+  moveValues: 
+  beatScalar: 1
+  loopTime: 30
+  audioSource: {fileID: 1834537811}
+  observers:
+  - {fileID: 732809557}
+  patternColor: {r: 0, g: 0, b: 0, a: 0}
+  sequenceIndex: 0
+--- !u!4 &949690513
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 949690511}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.72070694, y: -2.87858868, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
 --- !u!1 &1039640305
 GameObject:
   m_ObjectHideFlags: 0
@@ -1115,10 +1206,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beatValue: 4
-  beatScalar: 1
+  beatScalar: 4
   beatOffset: 0
   negativeBeatOffset: 0
-  beatType: 8
+  beatType: 2
   loopTime: 30
   audioSource: {fileID: 1834537811}
   observers: []
@@ -1205,10 +1296,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beatValue: 3
-  beatScalar: 1
+  beatScalar: 4
   beatOffset: 0
   negativeBeatOffset: 0
-  beatType: 8
+  beatType: 2
   loopTime: 30
   audioSource: {fileID: 1834537811}
   observers: []
@@ -1260,6 +1351,54 @@ Prefab:
   m_RootGameObject: {fileID: 295494262}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &1399265494
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1399265496}
+  - 114: {fileID: 1399265495}
+  m_Layer: 0
+  m_Name: Pattern3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1399265495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1399265494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea09543a04dee4515a80baa90060a389, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beatvalues: 06000000
+  moveValues: 
+  beatScalar: 1
+  loopTime: 30
+  audioSource: {fileID: 1834537811}
+  observers:
+  - {fileID: 1931366676}
+  patternColor: {r: 0, g: 0, b: 0, a: 0}
+  sequenceIndex: 0
+--- !u!4 &1399265496
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1399265494}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.72070694, y: -2.87858868, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
 --- !u!1 &1507082877
 GameObject:
   m_ObjectHideFlags: 0
@@ -1492,10 +1631,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beatValue: 7
-  beatScalar: 1
+  beatScalar: 4
   beatOffset: 0
   negativeBeatOffset: 0
-  beatType: 8
+  beatType: 2
   loopTime: 30
   audioSource: {fileID: 1834537811}
   observers: []
@@ -1599,13 +1738,61 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beatValue: 6
-  beatScalar: 1
+  beatScalar: 4
   beatOffset: 0
   negativeBeatOffset: 0
-  beatType: 8
+  beatType: 2
   loopTime: 30
   audioSource: {fileID: 1834537811}
   observers: []
+--- !u!1 &1788805696
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1788805698}
+  - 114: {fileID: 1788805697}
+  m_Layer: 0
+  m_Name: Pattern4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1788805697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1788805696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea09543a04dee4515a80baa90060a389, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beatvalues: 04000000
+  moveValues: 
+  beatScalar: 1
+  loopTime: 30
+  audioSource: {fileID: 1834537811}
+  observers:
+  - {fileID: 848053420}
+  patternColor: {r: 0, g: 0, b: 0, a: 0}
+  sequenceIndex: 0
+--- !u!4 &1788805698
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1788805696}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.72070694, y: -2.87858868, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
 --- !u!1 &1814085187
 GameObject:
   m_ObjectHideFlags: 0
@@ -1618,7 +1805,7 @@ GameObject:
   - 114: {fileID: 1814085189}
   - 82: {fileID: 1814085191}
   m_Layer: 0
-  m_Name: Observer
+  m_Name: Observer2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1650,7 +1837,6 @@ MonoBehaviour:
   cutoff: 0
   switchCount: 0
   moves: 
-  previousObservers: []
   board: {fileID: 609256310}
   beatsArray: {fileID: 608572752}
   contentTrigger: {fileID: 1136862040}
@@ -1669,10 +1855,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dc6bf181cdb14aab9c6f511c928132c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beatWindow: 0
+  beatWindow: 25
   beatMask: 0
-  beatValue: 0
-  sound: {fileID: 0}
 --- !u!82 &1814085191
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1682,7 +1866,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1771,10 +1955,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beatValue: 5
-  beatScalar: 1
+  beatScalar: 4
   beatOffset: 0
   negativeBeatOffset: 0
-  beatType: 8
+  beatType: 2
   loopTime: 30
   audioSource: {fileID: 1834537811}
   observers:
@@ -1808,7 +1992,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91b7313f19d4448c194f6d6daebf9a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bpm: 118
+  bpm: 59
   startDelay: 1
 --- !u!82 &1834537811
 AudioSource:
@@ -1819,11 +2003,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: 49f9b50f77b1f4ef7bfe092a1f0fabc7, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0
   m_Pitch: 1
   Loop: 1
-  Mute: 0
+  Mute: 1
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
@@ -1923,11 +2107,11 @@ MonoBehaviour:
   beatScalar: 1
   beatOffset: 0
   negativeBeatOffset: 0
-  beatType: 8
+  beatType: 2
   loopTime: 30
   audioSource: {fileID: 1834537811}
   observers:
-  - {fileID: 732809557}
+  - {fileID: 1814085187}
 --- !u!1 &1931366676
 GameObject:
   m_ObjectHideFlags: 0
@@ -1940,7 +2124,7 @@ GameObject:
   - 114: {fileID: 1931366678}
   - 82: {fileID: 1931366680}
   m_Layer: 0
-  m_Name: Observer
+  m_Name: Observer3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1972,7 +2156,6 @@ MonoBehaviour:
   cutoff: 0
   switchCount: 0
   moves: 
-  previousObservers: []
   board: {fileID: 609256310}
   beatsArray: {fileID: 608572752}
   contentTrigger: {fileID: 1136862040}
@@ -1991,10 +2174,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dc6bf181cdb14aab9c6f511c928132c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beatWindow: 0
+  beatWindow: 25
   beatMask: 0
-  beatValue: 0
-  sound: {fileID: 0}
 --- !u!82 &1931366680
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2004,7 +2185,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -2096,11 +2277,10 @@ MonoBehaviour:
   beatScalar: 4
   beatOffset: 0
   negativeBeatOffset: 0
-  beatType: 8
+  beatType: 2
   loopTime: 30
   audioSource: {fileID: 1834537811}
-  observers:
-  - {fileID: 1814085187}
+  observers: []
 --- !u!1 &2101586777
 GameObject:
   m_ObjectHideFlags: 0
