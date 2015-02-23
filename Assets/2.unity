@@ -89,7 +89,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9952233
 Transform:
   m_ObjectHideFlags: 0
@@ -745,7 +745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dc6bf181cdb14aab9c6f511c928132c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beatWindow: 25
+  beatWindow: 7
   beatMask: 0
 --- !u!4 &732809560
 Transform:
@@ -926,7 +926,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dc6bf181cdb14aab9c6f511c928132c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beatWindow: 17
+  beatWindow: 10
   beatMask: 0
 --- !u!82 &848053424
 AudioSource:
@@ -1145,10 +1145,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea09543a04dee4515a80baa90060a389, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beatvalues: 01000000
+  beatvalues: 07000000
   moveValues: 
   beatScalar: 1
-  loopTime: 30
+  loopTime: 1
   audioSource: {fileID: 1834537811}
   observers:
   - {fileID: 732809557}
@@ -1414,7 +1414,7 @@ GameObject:
   - 114: {fileID: 1507082886}
   - 114: {fileID: 1507082885}
   - 114: {fileID: 1507082882}
-  - 114: {fileID: 1507082887}
+  - 114: {fileID: 1507082881}
   m_Layer: 0
   m_Name: Synth
   m_TagString: Untagged
@@ -1514,6 +1514,19 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &1507082881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1507082877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 462ed112e04f647c2bce6bf3659c51ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  decayTime: 1
+  wetMix: .100000001
 --- !u!114 &1507082882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1590,19 +1603,6 @@ MonoBehaviour:
   synthConfig: {fileID: 0}
   multiplier: 1
   modulation: 0
---- !u!114 &1507082887
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1507082877}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 462ed112e04f647c2bce6bf3659c51ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  decayTime: 3.32999992
-  wetMix: .159999996
 --- !u!1 &1642285445
 GameObject:
   m_ObjectHideFlags: 0
@@ -1855,7 +1855,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dc6bf181cdb14aab9c6f511c928132c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beatWindow: 25
+  beatWindow: 10
   beatMask: 0
 --- !u!82 &1814085191
 AudioSource:
@@ -2004,7 +2004,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: 49f9b50f77b1f4ef7bfe092a1f0fabc7, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0
+  m_Volume: .907999992
   m_Pitch: 1
   Loop: 1
   Mute: 1
@@ -2174,7 +2174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dc6bf181cdb14aab9c6f511c928132c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beatWindow: 25
+  beatWindow: 10
   beatMask: 0
 --- !u!82 &1931366680
 AudioSource:
@@ -2296,7 +2296,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2101586778
 Transform:
   m_ObjectHideFlags: 0

@@ -4,8 +4,14 @@ using System.Collections.Generic;
 using SynchronizerData;
 
 public class MovementManager : MonoBehaviour {
+// add a starting point, a counter up point by either one, 16, or 17 ?
+// starting point row or col
+	// if row, 0, 16, 32, 48, 64, 80, 96, 112
+	//   increase by 1
+	// if col, 0-15
+	//   increase by 16 or 17
+	//what if the tail determines the speed.... it can't get too long and it can't catch up with the user
 
-	//public List<TileDetails> triggers = new List<TileDetails> ();
 	public int cutoff;
 	public int switchCount;
 	public List<int> moves = new List<int> ();
@@ -37,11 +43,14 @@ public class MovementManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		Debug.Log (beatObserver.beatMask + "bo");
 		if ((beatObserver.beatMask & BeatType.OnBeat) == BeatType.OnBeat) {
+			audio.Play ();
 			var tile = grid.tiles[moves[moveCounter]].GetComponent<TileDetails>();
 			tile.FadeToBlack();
-			audio.Play ();
+			print ("movecounter"+ moveCounter);
 			moveCounter = (++moveCounter == moves.Count ? 0 : moveCounter);
+			//              is movecounter + 1 = moves.count? if yes, movecounter is 0. otherwise movecounter (? +1?)
 			++switchCount;
 		}
 	}
