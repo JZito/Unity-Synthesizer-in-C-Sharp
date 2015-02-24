@@ -7,17 +7,15 @@ public class TileDetails : MonoBehaviour {
 	public SpriteRenderer tileColor;
 	public Color touchColor;
 	public bool touchTrue;
-	public bool trigger;
+	public bool activeEnemy;
+	public bool activePlayer;
+	public bool activeTrail;
 	public bool coroutineRunning = false;
 	public float note;
 
 	// Use this for initialization
 	void Start () {
 		tileColor = gameObject.GetComponent<SpriteRenderer> ();
-//		print (this.name + note);
-		trigger = false;
-//		new Color ogColor = GetComponent<SpriteRenderer>().color;
-	
 	}
 	
 	// Update is called once per frame
@@ -57,7 +55,6 @@ public class TileDetails : MonoBehaviour {
 
 	public void FadeToBlack ()
 	{
-		trigger = true;
 		StartCoroutine (FadeBlack ());
 	}
 

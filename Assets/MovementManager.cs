@@ -30,7 +30,7 @@ public class MovementManager : MonoBehaviour {
 
 	void Start () {
 		grid = board.GetComponent<Grid> ();
-		ran = Random.Range (0, 5);
+		ran = Random.Range (0, 9);
 		beatObserver = GetComponent<BeatObserver>();
 		moveCounter = 0;
 		audio.clip = generate.audioList[ran];

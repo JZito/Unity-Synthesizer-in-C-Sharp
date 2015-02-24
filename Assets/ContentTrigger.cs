@@ -9,6 +9,8 @@ public class ContentTrigger : MonoBehaviour {
 	public Generate generate;
 	public int randomBeatChooser = 2;
 	public int randomSwitchInt = 3;
+
+	//DECIDE IF ROW OR COLUMN
 	
 	//public void StartChangeBeats (BeatCounter bc, GameObject bo ) {
 	//	StartCoroutine (ChangeBeats (bc, bo));
