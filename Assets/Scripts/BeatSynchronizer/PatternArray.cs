@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PatternArray : MonoBehaviour {
 	
-	public GameObject[] patterns;
+	public PatternCounter[] patterns;
 
 	// Use this for initialization
 	void Start () {

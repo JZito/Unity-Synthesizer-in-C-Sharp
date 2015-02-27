@@ -52,11 +52,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ac51849b6b4f40f68c9b8f2f8d6aa1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  touchTrue: 0
+  activeEnemy: 0
+  activePlayer: 0
+  activeTrail: 0
+  activeFlag: 0
+  path: 1
+  coroutineRunning: 0
   originalColor: {r: .258823544, g: .843137264, b: .717647076, a: .278431386}
   touchColor: {r: 1, g: 0, b: 0, a: .376470596}
-  touchTrue: 0
-  trigger: 0
+  flagColor: {r: .876267791, g: 1, b: .102941155, a: .352941185}
+  pathColor: {r: 1, g: .757403672, b: .235294104, a: .345098048}
+  enemyColor: {r: 1, g: .25, b: .979310513, a: .360784322}
+  duration: 5
+  smoothness: .0199999996
   note: 0
+  tileColor: {fileID: 0}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

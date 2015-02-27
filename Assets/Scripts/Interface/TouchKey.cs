@@ -62,9 +62,14 @@ public void Update() {
 
 				
 				if (Input.GetMouseButtonDown(0)) {
+					if (tDetails.path) {
 					lastNoteDegree = scale + (int)tDetails.note;
 					envelope = synth.KeyOn(lastNoteDegree, envelope);
 					tDetails.OnTouchDown();
+					}
+					else if (!tDetails.path) {
+						print ("banananananana LOSER!");
+					}
 				//	recipient.SendMessage("OnTouchDown",hit.point,
 				//	                      SendMessageOptions.DontRequireReceiver);
 				}
@@ -75,11 +80,16 @@ public void Update() {
 					//                      SendMessageOptions.DontRequireReceiver);
 				}
 				if (Input.GetMouseButton(0)) {
+					if (tDetails.path) {
 					lastNoteDegree = scale + (int)tDetails.note;
 					envelope = synth.KeyOn(lastNoteDegree, envelope);
 					tDetails.OnTouchStay();
 					//recipient.SendMessage("OnTouchStay",hit.point,
 					//                      SendMessageOptions.DontRequireReceiver);
+					}
+					else if (!tDetails.path) {
+						print ("A LOSER");
+					}
 				}
 				
 			}

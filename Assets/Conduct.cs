@@ -5,6 +5,7 @@ using SynchronizerData;
 public class Conduct : MonoBehaviour {
 
 	public int masterCount;
+	public PatternArray patternArray;
 	private BeatObserver beatObserver;
 
 

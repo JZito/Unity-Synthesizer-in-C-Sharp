@@ -14,6 +14,11 @@ public class Generate : MonoBehaviour {
 	public List<int> moves2 = new List<int>();
 	public List<int> moves3 = new List<int>();
 	public List<int> moves4 = new List<int>();
+	public List<int> moves5 = new List<int>();
+	public List<int> moves6 = new List<int>();
+	public List<int> moves7 = new List<int>();
+	public List<int> moves8 = new List<int>();
+	public List<int> moves9 = new List<int>();
 	public List<List<int>> movesList = new List<List<int>>();
 	public List<int> beats0 = new List<int> ();
 	public List<int> beats1 = new List<int> ();
@@ -21,6 +26,7 @@ public class Generate : MonoBehaviour {
 	public List<int> beats3 = new List<int> ();
 	public List<int> beats4 = new List<int> ();
 	public List<int> beats5 = new List<int> ();
+	public List<int> path = new List<int> ();
 	public List<List<int>> beatsList = new List<List<int>> ();
 	public List<AudioClip> audioList = new List<AudioClip>();
 
@@ -31,6 +37,12 @@ public class Generate : MonoBehaviour {
 		movesList.Add (moves2);
 		movesList.Add (moves3);
 		movesList.Add (moves4);
+		movesList.Add (moves5);
+		movesList.Add (moves6);
+		movesList.Add (moves7);
+		movesList.Add (moves8);
+		movesList.Add (moves9);
+		movesList.Add (path);
 		beatsList.Add (beats0);
 		beatsList.Add (beats1);
 		beatsList.Add (beats2);

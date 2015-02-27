@@ -117,7 +117,6 @@ public class PatternCounter : MonoBehaviour {
 				}
 				nextBeatSample += samplePeriods[sequenceIndex];
 				sequenceIndex = (++sequenceIndex == beatvalues.Count ? 0 : sequenceIndex);
-				print (sequenceIndex + this.name);
 			}
 			
 			yield return new WaitForSeconds(loopTime / 1000f);
