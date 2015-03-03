@@ -57,13 +57,17 @@ MonoBehaviour:
   activePlayer: 0
   activeTrail: 0
   activeFlag: 0
+  activeKey: 0
+  activeDoor: 0
   path: 1
   coroutineRunning: 0
-  originalColor: {r: .258823544, g: .843137264, b: .717647076, a: .278431386}
-  touchColor: {r: 1, g: 0, b: 0, a: .376470596}
-  flagColor: {r: .876267791, g: 1, b: .102941155, a: .352941185}
-  pathColor: {r: 1, g: .757403672, b: .235294104, a: .345098048}
-  enemyColor: {r: 1, g: .25, b: .979310513, a: .360784322}
+  originalColor: {r: .258823544, g: .843137264, b: .717647076, a: 1}
+  touchColor: {r: 1, g: 0, b: 0, a: 1}
+  flagColor: {r: .876267791, g: 1, b: .102941155, a: 1}
+  pathColor: {r: 1, g: .757403672, b: .235294104, a: 1}
+  enemyColor: {r: .337254912, g: .250980407, b: .776470602, a: 1}
+  keyColor: {r: 0, g: .678431392, b: 0, a: 1}
+  doorColor: {r: 0, g: .486274481, b: .325300902, a: 1}
   duration: 5
   smoothness: .0199999996
   note: 0
@@ -89,7 +93,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9bdf7ec73a9ef4c87956ee0763ec057d, type: 3}
-  m_Color: {r: .258823544, g: .843137264, b: .717647076, a: .278431386}
+  m_Color: {r: .258823544, g: .843137264, b: .717647076, a: 1}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

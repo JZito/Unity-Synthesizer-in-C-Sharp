@@ -545,6 +545,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0903bf7cdf11b473d916dd91e7dbaf47, type: 3}
   - {fileID: 8300000, guid: 1e67736e092f74e2ca29f5a56f821c9e, type: 3}
   - {fileID: 8300000, guid: 7de9806bf360645d187866742d92344a, type: 3}
+  - {fileID: 8300000, guid: 38db7465fc57246c68385f3bf9286ff7, type: 3}
+  - {fileID: 8300000, guid: 04cc07a9086824c49b5c279971afed3b, type: 3}
+  - {fileID: 8300000, guid: a7ec7b35022b34df7a7043756e2f5051, type: 3}
+  - {fileID: 8300000, guid: a6d3b857cf44d4b159c312f87d470b32, type: 3}
 --- !u!4 &376273976
 Transform:
   m_ObjectHideFlags: 0
@@ -692,7 +696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea09543a04dee4515a80baa90060a389, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beatvalues: 05000000
+  beatvalues: 02000000040000000400000002000000
   moveValues: 
   beatScalar: 1
   loopTime: 30
@@ -1588,7 +1592,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.5
+  orthographic size: 4.69999981
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2178,7 +2182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea09543a04dee4515a80baa90060a389, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beatvalues: 06000000
+  beatvalues: 0600000003000000
   moveValues: 
   beatScalar: 1
   loopTime: 30
@@ -2214,7 +2218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea09543a04dee4515a80baa90060a389, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beatvalues: 05000000
+  beatvalues: 04000000040000000200000002000000
   moveValues: 
   beatScalar: 1
   loopTime: 30
@@ -2395,7 +2399,7 @@ MonoBehaviour:
   gameCam: {fileID: 893799623}
   env_atk: 1
   env_rel: 1
-  scale: 47
+  scale: 42
   touchInputMask:
     serializedVersion: 2
     m_Bits: 256

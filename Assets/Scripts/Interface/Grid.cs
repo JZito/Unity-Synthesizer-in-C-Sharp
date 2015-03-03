@@ -10,6 +10,14 @@ using System.Collections.Generic;
      public int GridWidth;
 	 public int GridHeight;
 	 public int countUpObject;
+	 public int keyTile0;
+	public int keyTile1;
+	public int keytile2;
+	public int keyTile3;
+	public int doorTile0;
+	public int doorTile1;
+	public int doorTile2;
+	public int doorTile3;
 	 public List<GameObject> tiles = new List<GameObject>();
 	 public List<float> note = new List<float> ();
 
@@ -44,8 +52,16 @@ using System.Collections.Generic;
 					}
 				}
 				if (countUpObject == 32) {
-					g.GetComponent<TileDetails>().activeFlag = true;
+					gScript.activeFlag = true;
 					g.GetComponent<SpriteRenderer>().color = gScript.flagColor;
+				}
+				if (countUpObject == keyTile0) {
+					gScript.activeKey = true;
+					g.GetComponent<SpriteRenderer>().color = gScript.keyColor;
+				}
+				if (countUpObject == doorTile0) {
+					gScript.activeDoor = true;
+					g.GetComponent<SpriteRenderer>().color = gScript.doorColor;
 				}
 			
 			}

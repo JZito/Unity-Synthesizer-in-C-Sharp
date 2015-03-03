@@ -8,4 +8,6 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/1.unity
   - enabled: 1
+    path: Assets/load.unity
+  - enabled: 1
     path: Assets/2.unity

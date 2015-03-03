@@ -28,19 +28,29 @@ public class MovementManager : MonoBehaviour {
 	public int randomBeatChooser = 2;
 	public int arrayNum;
 	public int randomSwitchInt = 3;
+	private int[] switchCounts;
+	private int switchPoint;
 
 	void Start () {
 		grid = board.GetComponent<Grid> ();
 		ran = Random.Range (0, 9);
+		switchCounts = new int[4];
+		switchCounts [0] = 8;
+
+		switchCounts [1] = 16;
+		switchCounts [2] = 24;
+		switchCounts [3] = 32;
+
+		switchPoint = switchCounts [Random.Range (0, 3)];
 		beatObserver = GetComponent<BeatObserver>();
 		moveCounter = 0;
 		audio.clip = generate.audioList[ran];
 		beatsArray.beats[arrayNum].GetComponent<BeatCounter>().observers.Add (this.gameObject);
 	//	contentTrigger.StartChangeMoves(this.gameObject.GetComponent<MovementManager>());
-		for (int i = 0; i <= generate.movesList[arrayNum].Count; i++) {
+		for (int i = 0; i < generate.movesList[arrayNum].Count; i++) {
 			moves.Add (generate.movesList[arrayNum][i]);
 		}
-		StartCoroutine (ChangeBeats ());
+//		StartCoroutine (ChangeBeats ());
 	}
 
 
@@ -51,28 +61,33 @@ public class MovementManager : MonoBehaviour {
 		if ((beatObserver.beatMask & BeatType.OnBeat) == BeatType.OnBeat) {
 			audio.Play ();
 			var tile = grid.tiles[moves[moveCounter]].GetComponent<TileDetails>();
+			tile.activeEnemy = true;
 			tile.FadeToBlack();
 //			print ("movecounter"+ moveCounter);
 			moveCounter = (++moveCounter == moves.Count ? 0 : moveCounter);
 			//              is movecounter + 1 = moves.count? if yes, movecounter is 0. otherwise movecounter (? +1?)
 			++switchCount;
+			if (switchCount == switchPoint) {
+				audio.clip = generate.audioList[Random.Range (0,15)];
+				switchCount = 0;
+			}
 		}
 	}
 
-	public bool switcher () {
-			if (switchCount >= randomSwitchInt)
-			{
-				return true;
-			}
-
-			return false;
-		}
+//	public bool switcher () {
+//			if (switchCount >= randomSwitchInt)
+//			{
+//				return true;
+//			}
+	//
+	//		return false;
+	//	}
 
 //		if ((beatObserver.beatMask & BeatType.UpBeat) == BeatType.UpBeat) {
 //			transform.Rotate(Vector3.forward, 45f);
 //		}
 	
-
+	/*
 	IEnumerator ChangeBeats () {
 		if (switcher()) {
 			for (int i = 0; i< beatsArray.beats.Length; i++) {
@@ -91,4 +106,5 @@ public class MovementManager : MonoBehaviour {
 		}
 		yield return new WaitForSeconds (0.05f);
 	}
+	*/
 }

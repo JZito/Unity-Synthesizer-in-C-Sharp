@@ -8,6 +8,8 @@ public class TileDetails : MonoBehaviour {
 	public bool activePlayer;
 	public bool activeTrail;
 	public bool activeFlag;
+	public bool activeKey;
+	public bool activeDoor;
 	public bool path = true;
 	public bool coroutineRunning = false;
 	public Color originalColor;
@@ -16,7 +18,9 @@ public class TileDetails : MonoBehaviour {
 	public Color flagColor;
 	public Color pathColor;
 	public Color enemyColor;
-	public float duration = 5f;
+	public Color keyColor;
+	public Color doorColor;
+	public float duration = 2.24f;
 	public float smoothness = 0.02f;
 	public float note;
 	public SpriteRenderer tileColor;
@@ -34,24 +38,38 @@ public class TileDetails : MonoBehaviour {
 
 	public void OnTouchDown () {
 		tileColor.color = touchColor;
-			while (coroutineRunning) {
+			if (coroutineRunning) {
 				StopCoroutine ("LerpColor");
 				print ("stop!");
 				coroutineRunning = false;
 					}
-			while (activeEnemy) {
+			if (activeEnemy) {
 				
 			}
+			if (activeDoor) {
+					
+		}
+		if (activeEnemy) {
+			Application.LoadLevel(Application.loadedLevel);
+		}
 	}
 
 	public void OnTouchStay () {
 		tileColor.color = touchColor;
 		
-		while (coroutineRunning) {
+		if (coroutineRunning) {
 			StopCoroutine ("LerpColor");
 			print ("stop!");
 			coroutineRunning = false;
 			
+		}
+
+		if (activeDoor) {
+					
+		}
+
+		if (activeEnemy) {
+			Application.LoadLevel(Application.loadedLevel);
 		}
 	}
 
@@ -63,14 +81,28 @@ public class TileDetails : MonoBehaviour {
 		else if (!path) {
 			print ("boo boo");
 		}
+
+		if (activeDoor) {
+				
+		}
 	}
 
 	public void FadeToBlack ()
 	{
-		if (activeEnemy) {
-			StopCoroutine("FadeBlack");		
+		if (!activeKey) {
+
+			if (activeEnemy) {
+				//StopCoroutine("FadeBlack");	
+				print ("enemy collission");
+			}
+			if (activeKey) {
+						
+			}
+			tileColor.color = enemyColor;
 		}
-		StartCoroutine ("FadeBlack");
+		else if (activeKey) {
+			print ("key");
+		}
 	}
 
 	public IEnumerator LerpColor()
@@ -99,10 +131,9 @@ public class TileDetails : MonoBehaviour {
 		return true;
 		coroutineRunning = false;
 	}
-
+	/*
 	public IEnumerator FadeBlack() {
-		for (float t = 0; t <= 1.01f; t += Time.deltaTime)
-		{
+
 			activeEnemy = true;
 			if (path) {
 			//	tileColor.color = Color.Lerp(Color.black, pathColor, t);
@@ -112,9 +143,10 @@ public class TileDetails : MonoBehaviour {
 				tileColor.color = Color.Lerp (Color.black, originalColor, t);
 			}
 			yield return null;
-		}
+
 		tileColor.color = pathColor;
 		activeEnemy = false;
 	}
+	*/
 	
 }
