@@ -3,6 +3,7 @@ A synthesizer written in C# utilizing Unity's OnAudioFilterRead method.
 
 [![Alt text](https://img.youtube.com/vi/JHRrez_RK4Q/0.jpg)](https://www.youtube.com/watch?v=JHRrez_RK4Q)
 
+Click the image to see this little app in action on Youtube.
 Initially written for a rhythm game prototype as a junior Unity dev years ago, I recently updated the project for compatibility in Unity 2017.
 The most interesting and useful component, the synth, is under the Assets/Scripts section- it requires an AudioSource object for the OnAudioFilterRead() function to produce sound.
 
