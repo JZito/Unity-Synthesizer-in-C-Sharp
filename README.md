@@ -1,5 +1,5 @@
 # Unity-Synthesizer-in-C-Sharp
-A synthesizer written in C# utilizing Unity's OnAudioFilterRead method.
+A synthesizer written in C# (the programming language, not the musical scale) utilizing Unity's OnAudioFilterRead method.
 
 [![Alt text](https://img.youtube.com/vi/JHRrez_RK4Q/0.jpg)](https://www.youtube.com/watch?v=JHRrez_RK4Q)
 
