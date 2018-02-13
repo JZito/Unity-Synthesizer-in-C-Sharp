@@ -27,7 +27,7 @@ public class MovementManager : MonoBehaviour {
 		ran = Random.Range (0, 5);
 		beatObserver = GetComponent<BeatObserver>();
 		moveCounter = 0;
-		audio.clip = generate.audioList[ran];
+		GetComponent<AudioSource>().clip = generate.audioList[ran];
 		beatsArray.beats[randomBeatChooser].GetComponent<BeatCounter>().observers.Add (this.gameObject);
 		contentTrigger.StartChangeMoves(this.gameObject.GetComponent<MovementManager>());
 		StartCoroutine (ChangeBeats ());
@@ -40,7 +40,7 @@ public class MovementManager : MonoBehaviour {
 		if ((beatObserver.beatMask & BeatType.OnBeat) == BeatType.OnBeat) {
 			var tile = grid.tiles[moves[moveCounter]].GetComponent<TileDetails>();
 			tile.FadeToBlack();
-			audio.Play ();
+			GetComponent<AudioSource>().Play ();
 			moveCounter = (++moveCounter == moves.Count ? 0 : moveCounter);
 			++switchCount;
 		}

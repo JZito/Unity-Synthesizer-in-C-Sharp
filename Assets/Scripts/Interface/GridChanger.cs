@@ -60,7 +60,7 @@ public class GridChanger : MonoBehaviour {
 			observer = observers [i];
 			beatObserver = observer.gameObject.GetComponent<BeatObserver>();
 			if ((beatObserver.beatMask & BeatType.OnBeat) == BeatType.OnBeat) {
-				observer.audio.Play ();
+				observer.GetComponent<AudioSource>().Play ();
 //	beatPoint = beatPoint + (Mathf.RoundToInt ((1/BeatDecimalValues.values 
 //                                      [(int)beatObserver.beatValue])) * 2);//beatPositions[beatCounter];
 				print (beatPoint + "bp");
